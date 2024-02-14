@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
-#include <type_traits>
-#include <cfloat>
 
 #include "Exp.h"
 
