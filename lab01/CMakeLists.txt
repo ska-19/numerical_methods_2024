@@ -7,6 +7,6 @@ add_link_options(-Wall -Wextra)
 add_definitions(-DLOCAL)
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(numerical_methods_2024 main.cpp Exp.cpp Exp.h)
+add_executable(numerical_methods_2024 Exp.h TestExp.cpp Consts.h)
 
 

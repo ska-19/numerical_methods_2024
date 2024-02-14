@@ -6,7 +6,7 @@
 
 template<typename T>
 void test_EXP(const T &x) {
-    T exp_result = EXP(x);
+    T exp_result = ADAI::EXP(x);
     T std_exp_result = std::exp(x);
     std::cout << "EXP(" << x << ") = " << exp_result << ", std::exp(" << x << ") = " << std_exp_result << ", diff = "
               << std::abs(exp_result - std_exp_result) << '\n';
@@ -48,6 +48,14 @@ int main() {
     test_EXP(20.0f);
     test_EXP(20.0);
     test_EXP(20.0l);
+
+    test_EXP(700.0f);
+    test_EXP(700.0);
+    test_EXP(700.0l);
+
+    test_EXP(1.4426950408889634073e-5f);
+    test_EXP(1.4426950408889634073e-5);
+    test_EXP(1.4426950408889634073e-5l);
 
     return 0;
 }
