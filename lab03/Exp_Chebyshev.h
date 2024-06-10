@@ -16,13 +16,13 @@ namespace ADAI {
         for (int i = 1; i <= N + 1; ++i) {
             points[i] = std::cos(ADAI::PI<double> * (2.0 * i - 1) / (2.0 * (N + 1)));
         }
-    }
+    } // Compute points for evaluating Chebyshev polynomials
 
     void initialize_scale() {
         for (int i = 1; i <= N + 1; ++i) {
             scale[i] = std::exp(std::acos(points[i]));
         }
-    }
+    } // Compute exp(arccos(point)) for each point
 
     void initialize_chebyshev_polynomials() {
         chebyshev[0][0] = chebyshev[1][1] = 1;
@@ -33,7 +33,7 @@ namespace ADAI {
             }
             chebyshev[order][0] = -chebyshev[order - 2][0];
         }
-    }
+    } // Initialize Chebyshev polynomials coefficients up to order N
 
     double computeChebyshev(int k, double x) {
         double x_pow = 1;
@@ -43,7 +43,7 @@ namespace ADAI {
             x_pow *= x;
         }
         return res;
-    }
+    } // Compute the k-th Chebyshev polynomial at point x
 
     void solve_coefficients_gsl() {
         gsl_matrix *A = gsl_matrix_alloc(N + 1, N + 1);
@@ -70,14 +70,14 @@ namespace ADAI {
         gsl_vector_free(c);
         gsl_vector_free(b);
         gsl_matrix_free(A);
-    }
+    } // Solve the system of linear equations to find the coefficients for Chebyshev approximation using GSL
 
     void initialize() {
         initialize_points();
         initialize_scale();
         initialize_chebyshev_polynomials();
         solve_coefficients_gsl();
-    }
+    } // Initialize all necessary data for computations
 
     static bool is_initialized = false;
 
@@ -94,7 +94,7 @@ namespace ADAI {
         }
 
         return result;
-    }
+    }  // Compute exp(x) using the Chebyshev polynomial series approximation
 
     // Explicit template instantiation
     template float Exp_Chebyshev<float>(float x);
