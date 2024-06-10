@@ -20,7 +20,7 @@ void test_EXP(const T &x) {
     std::cout << "EXP<Taylor>(" << x << ") = " << exp_result_taylor << "  diff = "
               << std::abs(exp_result_taylor - std_exp_result) << '\n';
     std::cout << "EXP<Chebyshev>(" << x << ") = " << exp_result_chebyshev << "  diff = "
-                << std::abs(exp_result_chebyshev - std_exp_result) << '\n';
+              << std::abs(exp_result_chebyshev - std_exp_result) << '\n';
 }
 
 int main() {
