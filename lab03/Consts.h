@@ -4,8 +4,18 @@
 #include <type_traits>
 #include <iostream>
 #include <cfloat>
+#include "cassert"
 
 namespace ADAI {
+    template<typename T>
+    constexpr inline T PI;
+    template<>
+    constexpr inline float PI<float> = 3.14159265358979323846f;
+    template<>
+    constexpr inline double PI<double> = 3.14159265358979323846;
+    template<>
+    constexpr inline long double PI<long double> = 3.141592653589793238462643383279502884L;
+
     template<typename T>
     constexpr inline T Ln2;
     template<>
@@ -33,14 +43,14 @@ namespace ADAI {
     template<>
     constexpr inline long double SqRt2<long double> = 1.414213562373095048801688724209698079L;
 
-    template<typename T>
-    constexpr inline T N;
-    template<>
-    constexpr inline float N<float> = 6;
-    template<>
-    constexpr inline double N<double> = 12;
-    template<>
-    constexpr inline long double N<long double> = 14;
+//    template<typename T>
+//    constexpr inline T N;
+//    template<>
+//    constexpr inline float N<float> = 6;
+//    template<>
+//    constexpr inline double N<double> = 12;
+//    template<>
+//    constexpr inline long double N<long double> = 14;
 
 }
 
