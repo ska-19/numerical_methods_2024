@@ -14,11 +14,11 @@ void runTest_1a() {
     int best_alpha = 0;
     for (int alpha = 40; alpha <= 60; ++alpha) {
         ADAI::ObserverChecker observer;
-        ADAI::RHS rhs(1);
-        double v_x = ADAI::v0 * std::cos(static_cast<double>(alpha));
-        double v_y = ADAI::v0 * std::sin(static_cast<double>(alpha));
-        double a_y0[ADAI::RHS::N] = {ADAI::x0, ADAI::y0, v_x, v_y}, a_yEnd[ADAI::RHS::N];
-        double t_0 = 0, a_tEnd=0;
+        ADAI::RHS rhs;
+        double v_x = ADAI::v0 * std::cos(static_cast<double>(ADAI::pi * alpha / 180));
+        double v_y = ADAI::v0 * std::sin(static_cast<double>(ADAI::pi * alpha / 180));
+        double a_y0[ADAI::RHS::N] = {ADAI::x0, v_x, ADAI::y0, v_y}, a_yEnd[ADAI::RHS::N];
+        double t_0 = 0, a_tEnd = 5000.0;
         ADAI::TimeStepperRKF45<ADAI::RHS> timeStepperRkf45(&rhs);
         ADAI::ODE_integrator<ADAI::TimeStepperRKF45<ADAI::RHS>, ADAI::ObserverChecker> integrator(&timeStepperRkf45,
                                                                                                   &observer);
@@ -34,11 +34,11 @@ void runTest_1a() {
 
 void runTest_1b() {
     ADAI::ObserverPlotTrajectory observer;
-    ADAI::RHS rhs(1);
-    double v_x = ADAI::v0 * std::cos(55.0);
-    double v_y = ADAI::v0 * std::sin(55.0);
-    double a_y0[ADAI::RHS::N] = {ADAI::x0, ADAI::y0, v_x, v_y}, a_yEnd[ADAI::RHS::N];
-    double t_0 = 0, a_tEnd = 0;
+    ADAI::RHS rhs;
+    double v_x = ADAI::v0 * std::cos(ADAI::pi * 55.0 / 180);
+    double v_y = ADAI::v0 * std::sin(ADAI::pi * 55.0 / 180);
+    double a_y0[ADAI::RHS::N] = {ADAI::x0, v_x, ADAI::y0, v_y}, a_yEnd[ADAI::RHS::N];
+    double t_0 = 0, a_tEnd = 5000.0;
 
     ADAI::TimeStepperRKF45<ADAI::RHS> timeStepperRkf45(&rhs);
     std::cout << "Plot the trajectory:\n";
@@ -61,7 +61,7 @@ void runTest_2() {
     double v_x = ADAI::v0 * std::cos(55.0);
     double v_y = ADAI::v0 * std::sin(55.0);
     double a_y0[ADAI::RHS::N] = {ADAI::x0, ADAI::y0, v_x, v_y}, a_yEnd[ADAI::RHS::N];
-    ADAI::RHS rhs(1);
+    ADAI::RHS rhs;
     ADAI::ObserverPlotAllVector observer;
     // Using TimeStepperRKF45
     ADAI::TimeStepperRKF45<ADAI::RHS> rkf45_stepper(&rhs);

@@ -11,7 +11,7 @@ namespace ADAI {
     public:
         ODE_integrator(Stepper *a_stepper, Observer const *a_observer) : m_stepper(a_stepper), m_observer(a_observer) {}
 
-        double operator()(double t_0, double h, double a_tEnd, double a_y0[Stepper::N], double a_yEnd[Stepper::N]) {
+        double operator()(double t_0, double h, double a_tEnd, double a_y0[], double a_yEnd[]) {
             double curr_t = t_0;
             double curr_y[Stepper::N], y_next[Stepper::N];
             std::copy(a_y0, a_y0 + Stepper::N, curr_y);
@@ -24,7 +24,6 @@ namespace ADAI {
 
                 // Observer
                 if (!m_observer->operator()(curr_t, Stepper::N, curr_y)) {
-                    std::cout << "Observer finished work!\n";
                     break;
                 }
 
