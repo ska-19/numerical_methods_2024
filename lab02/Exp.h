@@ -2,7 +2,8 @@
 #define NUMERICAL_METHODS_2024_EXP_H
 
 #include "Consts.h"
-#include "assert.h"
+#include <cassert>
+
 
 namespace ADAI {
 
