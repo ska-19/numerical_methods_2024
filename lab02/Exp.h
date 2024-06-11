@@ -4,6 +4,7 @@
 #include "Consts.h"
 #include <cassert>
 
+
 namespace ADAI {
 
     template<typename T>
