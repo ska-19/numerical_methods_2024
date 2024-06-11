@@ -6,6 +6,7 @@
 
 namespace ADAI {
 
+    // Template class Everhart for solving differential equations using Everhart's method
     template<typename T>
     class Everhart {
     public:
@@ -29,7 +30,6 @@ namespace ADAI {
         void step();
     }; // Template class Everhart for solving differential equations using Everhart's method
 
-
     template<typename T>
     Everhart<T>::Everhart(T dt, const std::vector<T> &initial_conditions,
                           const std::function<std::vector<T>(const std::vector<T> &)> &f)
@@ -43,7 +43,6 @@ namespace ADAI {
 
         if (previous_states.size() < 2) {
             // For the first step, use Euler's method as a simple approximation
-            // Простой метод Эйлера для первого шага
             std::vector<T> new_state(state.size());
             for (size_t i = 0; i < state.size(); ++i) {
                 new_state[i] = state[i] + dt * k1[i];
@@ -56,11 +55,14 @@ namespace ADAI {
             std::vector<T> k0 = f(previous_states[previous_states.size() - 2]);
             std::vector<T> new_state(state.size());
 
+            // Update the state using a linear combination of the current and previous derivatives
             for (size_t i = 0; i < state.size(); ++i) {
                 new_state[i] = state[i] + dt * (1.5 * k1[i] - 0.5 * k0[i]);
             }
 
+            // Store the new state in previous states
             previous_states.push_back(new_state);
+            // Keep only the last two previous states
             if (previous_states.size() > 3) {
                 previous_states.erase(previous_states.begin());
             }
