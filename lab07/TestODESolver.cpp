@@ -95,6 +95,7 @@ void runTest_2() {
 }
 
 int main() {
+
     std::cout << "Task 1:\n\n";
     std::cout << "1a:\n";
     runTest_1a();
